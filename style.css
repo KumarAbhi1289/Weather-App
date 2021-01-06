@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;0,600;0,700;1,400;1,500;1,700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+/* utilites classes */
+.flex{
+    display: flex;
+}
+.justify-content{
+    justify-content: center;
+}
+.align-items{
+    align-items: center;
+}
+.text-center{
+    text-align: center;
+}
+/* Var */ 
+:root{
+    --primary: #a5bbdd;
+    --pure: #fff;
+    --sec: #f3f2ef;
+    --dark: grey;
+}
+
+
+/* CSS */
+body{
+    width: 100vw;
+    height: 100vh;
+    background: var(--dark);
+    font-family: 'Raleway', sans-serif;
+}
+
+.container{
+    background: var(--primary);
+    width: 25%;
+    height: 70%;
+    border-radius: 4px;
+    overflow: hidden; 
+    position: relative;
+    box-shadow: 1px 2px 15px 1px;
+}
+.container .wave{
+    background: var(--pure);
+    width: 50rem;
+    height: 50rem;
+    position: absolute;
+    left: -50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 42%;
+    z-index: 1;
+    animation: animate 7s linear infinite;
+    opacity: 0.2;
+}
+.container .wave1{
+    animation: animate 8s linear infinite;
+}
+.container .wave2{
+    animation: animate 12s linear infinite;
+}
+
+@keyframes animate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.container .weathercon{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    font-size: 6rem;
+    -webkit-font-smoothing: antialiased;
+    animation: zoom 3s linear infinite alternate;
+}
+@keyframes zoom{
+    from{
+        transform: scale(0.8);
+    }
+    to{
+        transform: scale(1.2);
+    }
+}
+.container .info{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 50%;
+    z-index: 11;
+    width: 100%;
+    flex-direction: column;
+}
+.container .info .temp{
+    margin-top: 2rem;
+}
+.container .info h3{
+    margin-bottom: 0.5rem;
+}
+.container .weathercon #weather{
+    background-image: url('./icons/13d.png');
+    background-size: cover;
+    width: 10rem;
+    height: 10rem;
+    background-repeat: no-repeat;
+}
+.fa{
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: blue;
+}
+
+/* responsive */
+@media (max-width:1024px){
+    .container{
+        width: 70%;
+        height: 80%;
+    }
+    html{
+        font-size: 200%;
+    }
+}
+@media (max-width:768px){
+    .container{
+        width: 100%;
+        height: 100%;
+    }
+    html{
+        font-size: 140%;
+    }
+}
+@media(max-width:400px){
+    html{
+        font-size: 120%;
+    }
+    .container .wave{
+        left: -70%;
+    }
+}
