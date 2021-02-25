@@ -23,11 +23,8 @@ var xhr = new XMLHttpRequest();
 // jab tak location na pata ho tab tak mumbai ka dikahyga
 xhr.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200){
-        console.log(this.responseText);
-        console.log('inside')
         var getJsonData = this.responseText;
         getObjData = JSON.parse(getJsonData);
-        console.log(getObjData)
         city = getObjData.name;
         if(getObjData.sys.country == 'IN'){
             country = 'India';
@@ -36,7 +33,6 @@ xhr.onreadystatechange = function() {
             country = getObjData.sys.country;
         }
         city = loc.innerHTML = city +", " +country;
-        console.log(city, country);
         temp.innerHTML = ((getObjData.main.temp - 273.15).toPrecision(4))+ "°C";
         humidity.innerHTML = "Humidity: "+ getObjData.main.humidity+ "% <strong>|</strong> Pressure: "+ getObjData.main.pressure+ " mbar";
         date.innerHTML = `${day} <strong>|</strong> ${getDate} ${month} ${year} <strong>|</strong> ${hours}:${min} ${meridiem}`;
@@ -45,7 +41,7 @@ xhr.onreadystatechange = function() {
         
     }
 }
-xhr.open('GET', "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=delhi&appid=ace04b89d96491487b0fe5f67b115e5d", true)
+xhr.open('GET', "https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=ace04b89d96491487b0fe5f67b115e5d", true)
 xhr.send()
 
 
@@ -58,11 +54,8 @@ function getSuccess(position){
     //  api.openweathermap.org/data/2.5/weather?lat=26.8467088&lon=80.9461592&appid=ace04b89d96491487b0fe5f67b115e5d
     xhr.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200){
-            console.log(this.responseText);
-            console.log('inside')
             var getJsonData = this.responseText;
             getObjData = JSON.parse(getJsonData);
-            console.log(getObjData)
             city = getObjData.name;
             if(getObjData.sys.country == 'IN'){
                 country = 'India';
@@ -81,7 +74,6 @@ function getSuccess(position){
             // }
             desc.innerHTML = "<strong>Weather Description:</strong> "+ getObjData.weather[0].description
             weather.style.backgroundImage = "url('./icons/"+ getObjData.weather[0].icon +".png')";
-            console.log(getObjData.weather[0].icon);
         }
     }
     xhr.open('GET', "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat="+ lat+ "&lon="+ lon+ "&appid=ace04b89d96491487b0fe5f67b115e5d", true)
