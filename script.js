@@ -64,21 +64,16 @@ function getSuccess(position){
                 country = getObjData.sys.country;
             }
             city = loc.innerHTML = city +", " +country;
-            console.log(city, country);
             temp.innerHTML = ((getObjData.main.temp - 273.15).toPrecision(4))+ "°C";
             humidity.innerHTML = "Humidity: "+ getObjData.main.humidity+ "% <strong>|</strong> Pressure: "+ getObjData.main.pressure+ " mbar";
             date.innerHTML = `${day} <strong>|</strong> ${getDate} ${month} ${year} <strong>|</strong> ${hours}:${min} ${meridiem}`;
-
-            // if (getObjData.weather[0].id >= 200 && getObjData.weather[0].id < 300){
-            //     weather.style.background = 'http://openweathermap.org/img/wn/11d@2x.png';
-            // }
             desc.innerHTML = "<strong>Weather Description:</strong> "+ getObjData.weather[0].description
             weather.style.backgroundImage = "url('./icons/"+ getObjData.weather[0].icon +".png')";
         }
     }
-    xhr.open('GET', "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat="+ lat+ "&lon="+ lon+ "&appid=ace04b89d96491487b0fe5f67b115e5d", true)
+    xhr.open('GET', "https://api.openweathermap.org/data/2.5/weather?lat="+ lat+ "&lon="+ lon+ "&appid=ace04b89d96491487b0fe5f67b115e5d", true)
     xhr.send()
 }
 function getError(){
-    console.log("Error")
+    alert('Something went wrong')
 }
